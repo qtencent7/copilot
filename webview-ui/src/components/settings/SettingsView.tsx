@@ -146,24 +146,27 @@ const SettingsView = ({ onDone }: SettingsViewProps) => {
 	const handleCreateFile = () => {
 		vscode.postMessage({
 			type: "createFile",
-			fileName: "index.html",
-			content: `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My HTML Page</title>
-</head>
-<body>
-    <h1>Hello World!</h1>
-    <p>This is a simple HTML page created by Copilot.</p>
-</body>
-</html>`
+			fileName: ".clinerules",
+			content: `# Cline 规则配置文件
+# 这个文件用于配置 Cline 的行为
+
+# 忽略的文件和目录
+ignore:
+  - node_modules
+  - .git
+  - dist
+  - build
+
+# 自定义设置
+settings:
+  language: "chinese"
+  theme: "dark"
+  autoSave: true`,
 		})
 	}
 	return (
 		<div
-		    className="settings-view"
+			className="settings-view"
 			style={{
 				position: "fixed",
 				top: 0,

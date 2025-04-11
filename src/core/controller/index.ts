@@ -183,20 +183,14 @@ export class Controller {
 						// 如果没有打开的工作区，则使用用户的文档目录
 						const documentsPath = await this.getDocumentsPath()
 						const filePath = path.join(documentsPath, message.fileName!)
-						await vscode.workspace.fs.writeFile(
-							vscode.Uri.file(filePath),
-							new TextEncoder().encode(message.content!)
-						)
+						await vscode.workspace.fs.writeFile(vscode.Uri.file(filePath), new TextEncoder().encode(message.content!))
 						vscode.window.showInformationMessage(`文件已创建: ${filePath}`)
 						// 打开创建的文件
 						await vscode.commands.executeCommand("vscode.open", vscode.Uri.file(filePath))
 					} else {
 						// 使用第一个工作区文件夹
 						const filePath = path.join(workspaceFolders[0].uri.fsPath, message.fileName!)
-						await vscode.workspace.fs.writeFile(
-							vscode.Uri.file(filePath),
-							new TextEncoder().encode(message.content!)
-						)
+						await vscode.workspace.fs.writeFile(vscode.Uri.file(filePath), new TextEncoder().encode(message.content!))
 						vscode.window.showInformationMessage(`文件已创建: ${filePath}`)
 						// 打开创建的文件
 						await vscode.commands.executeCommand("vscode.open", vscode.Uri.file(filePath))
