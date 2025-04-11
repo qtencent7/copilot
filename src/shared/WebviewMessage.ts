@@ -9,6 +9,7 @@ import { McpViewTab } from "./mcp"
 
 export interface WebviewMessage {
 	type:
+		| "createFile"
 		| "addRemoteServer"
 		| "apiConfiguration"
 		| "webviewDidLaunch"
@@ -82,6 +83,8 @@ export interface WebviewMessage {
 		| "searchFiles"
 		| "toggleFavoriteModel"
 	// | "relaunchChromeDebugMode"
+	fileName?: string
+	content?: string
 	text?: string
 	uris?: string[] // Used for getRelativePaths
 	disabled?: boolean

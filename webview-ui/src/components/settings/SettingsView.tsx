@@ -143,9 +143,27 @@ const SettingsView = ({ onDone }: SettingsViewProps) => {
 		setPendingTabChange(tab)
 		handleSubmit(true)
 	}
-
+	const handleCreateFile = () => {
+		vscode.postMessage({
+			type: "createFile",
+			fileName: "index.html",
+			content: `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My HTML Page</title>
+</head>
+<body>
+    <h1>Hello World!</h1>
+    <p>This is a simple HTML page created by Copilot.</p>
+</body>
+</html>`
+		})
+	}
 	return (
 		<div
+		    className="settings-view"
 			style={{
 				position: "fixed",
 				top: 0,
@@ -158,6 +176,7 @@ const SettingsView = ({ onDone }: SettingsViewProps) => {
 				overflow: "hidden",
 			}}>
 			<div
+				className="settings-header"
 				style={{
 					display: "flex",
 					justifyContent: "space-between",
@@ -165,6 +184,7 @@ const SettingsView = ({ onDone }: SettingsViewProps) => {
 					marginBottom: "13px",
 					paddingRight: 17,
 				}}>
+				<VSCodeButton onClick={handleCreateFile}>Create a file</VSCodeButton>
 				<h3 style={{ color: "var(--vscode-foreground)", margin: 0 }}>Settings</h3>
 				<VSCodeButton onClick={() => handleSubmit(false)}>Done</VSCodeButton>
 			</div>
